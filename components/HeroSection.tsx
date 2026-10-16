@@ -1,8 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Search, FileText, Calendar, ShoppingBag, BarChart2, ArrowRight } from "lucide-react";
+import {
+  Search,
+  FileText,
+  Calendar,
+  ShoppingBag,
+  BarChart2,
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+} from "lucide-react";
 
 export default function HeroSection() {
   const [query, setQuery] = useState("");
@@ -12,7 +22,7 @@ export default function HeroSection() {
     { title: "Permohonan Surat Online (SKU, SKTM, Kematian, Izin)", category: "Layanan", url: "/pengantar", icon: FileText },
     { title: "Cek Status Pengantar Surat (NIK)", category: "Layanan", url: "/status", icon: FileText },
     { title: "Pengaduan & Aspirasi Masyarakat", category: "Layanan", url: "/pengaduan", icon: FileText },
-    { title: "Buku Tamu Digital", category: "Layanan", url: "/bukutamu", icon: FileText },
+    { title: "Buku Tamu Digital Kelurahan", category: "Layanan", url: "/bukutamu", icon: FileText },
     { title: "Data Kependudukan Kelurahan Benteng", category: "Statistik", url: "/statistik-penduduk", icon: BarChart2 },
     { title: "Statistik Pendidikan Warga", category: "Statistik", url: "/pendidikan", icon: BarChart2 },
     { title: "Statistik Pekerjaan Penduduk", category: "Statistik", url: "/pekerjaan", icon: BarChart2 },
@@ -32,92 +42,130 @@ export default function HeroSection() {
     : [];
 
   return (
-    <div
-      className="relative min-h-[520px] flex items-center justify-center text-center px-4 py-20 rounded-b-[40px] md:rounded-b-[60px] overflow-hidden shadow-xl"
-      style={{
-        backgroundImage: "linear-gradient(rgba(15, 23, 42, 0.65), rgba(6, 78, 59, 0.7)), url('/landing/images/slider-main/bentengg.png')",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
-    >
-      <div className="relative z-10 max-w-3xl w-full mx-auto space-y-6">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-600/90 text-white text-xs font-semibold tracking-wide backdrop-blur-md shadow-md animate-fade-in">
-          <span>Badan Pusat Statistik Provinsi Sulawesi Selatan</span>
-        </div>
+    <section className="relative bg-gradient-to-b from-white via-slate-50 to-slate-100/70 border-b border-slate-200/80 pt-8 pb-12 sm:pt-14 sm:pb-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          {/* Left Column: Civic Editorial Hero */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-semibold">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+              <span>Desa Cinta Statistik (Desa Cantik) BPS Sulsel</span>
+            </div>
 
-        <h2 className="text-emerald-300 font-semibold text-lg md:text-xl tracking-wide drop-shadow-md">
-          Selamat Datang di Website Resmi
-        </h2>
+            <div className="space-y-3">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+                Pusat Pelayanan & Data Terbuka Kelurahan Benteng
+              </h1>
+              <p className="text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed">
+                Akses mandiri persuratan warga, transparansi realisasi APBD, pengaduan lingkungan, dan basis data statistik terverifikasi Kabupaten Kepulauan Selayar.
+              </p>
+            </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight drop-shadow-lg">
-          Desa Cantik Kelurahan Benteng
-        </h1>
-
-        <p className="text-sm md:text-base text-slate-200 max-w-xl mx-auto leading-relaxed drop-shadow">
-          Pusat Informasi Statistik, Transparansi Pemerintahan, dan Pelayanan Administrasi Digital Terpadu Kabupaten Kepulauan Selayar.
-        </p>
-
-        {/* Live Search Box */}
-        <div className="max-w-xl mx-auto relative pt-2">
-          <div className="relative flex items-center bg-white/95 backdrop-blur-md rounded-full shadow-2xl p-1.5 border-2 border-emerald-400 focus-within:border-emerald-600 transition-all">
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onFocus={() => setFocused(true)}
-              placeholder="Cari berita, agenda, layanan surat, UMKM, statistik..."
-              className="w-full pl-5 pr-12 py-2.5 text-sm bg-transparent text-slate-800 placeholder-slate-400 focus:outline-hidden"
-            />
-            <button
-              aria-label="Cari"
-              className="w-10 h-10 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition-transform hover:scale-105 shrink-0"
-            >
-              <Search className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* Search Results Dropdown */}
-          {focused && results.length > 0 && (
-            <div
-              className="absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden z-50 text-left max-h-80 overflow-y-auto"
-              onMouseLeave={() => setFocused(false)}
-            >
-              <div className="p-3 bg-slate-50 border-b border-slate-100 text-xs font-bold text-slate-500 uppercase tracking-wider flex justify-between items-center">
-                <span>Hasil Pencarian ({results.length})</span>
-                <span className="text-[10px] text-slate-400">Klik untuk membuka</span>
+            {/* Live Search Box */}
+            <div className="relative max-w-xl">
+              <div className="relative flex items-center bg-white rounded-xl shadow-xs border border-slate-300 focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-100 transition-all">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5" />
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onFocus={() => setFocused(true)}
+                  placeholder="Ketik layanan yang Anda butuhkan (contoh: SKU, APBD, NIK)..."
+                  className="w-full pl-10 pr-24 py-3 text-xs sm:text-sm bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-hidden"
+                />
+                <button
+                  type="button"
+                  className="absolute right-1.5 px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-colors cursor-pointer"
+                >
+                  Cari
+                </button>
               </div>
-              <div className="divide-y divide-slate-100">
-                {results.map((r, i) => {
-                  const Icon = r.icon;
-                  return (
-                    <Link
-                      key={i}
-                      href={r.url}
-                      onClick={() => setFocused(false)}
-                      className="flex items-center justify-between p-3.5 hover:bg-emerald-50/80 transition-colors group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold text-slate-800 group-hover:text-emerald-800">
-                            {r.title}
-                          </p>
-                          <span className="text-[10px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-sm">
-                            {r.category}
-                          </span>
-                        </div>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all" />
-                    </Link>
-                  );
-                })}
+
+              {/* Instant Search Dropdown */}
+              {focused && results.length > 0 && (
+                <div
+                  className="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden z-50 text-left max-h-80 overflow-y-auto"
+                  onMouseLeave={() => setFocused(false)}
+                >
+                  <div className="p-3 bg-slate-50 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-wider flex justify-between items-center">
+                    <span>Hasil Pencarian ({results.length})</span>
+                    <span className="text-[10px] text-slate-400 font-normal">Pilih untuk membuka</span>
+                  </div>
+                  <div className="divide-y divide-slate-100">
+                    {results.map((r, i) => {
+                      const Icon = r.icon;
+                      return (
+                        <Link
+                          key={i}
+                          href={r.url}
+                          onClick={() => setFocused(false)}
+                          className="flex items-center justify-between p-3 hover:bg-emerald-50/70 transition-colors group"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                              <Icon className="w-3.5 h-3.5" />
+                            </div>
+                            <div>
+                              <p className="text-xs font-semibold text-slate-800 group-hover:text-emerald-800">
+                                {r.title}
+                              </p>
+                              <span className="text-[10px] font-medium text-emerald-700">
+                                {r.category}
+                              </span>
+                            </div>
+                          </div>
+                          <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-emerald-700 group-hover:translate-x-0.5 transition-all" />
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Operating Hours Status */}
+            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 pt-1">
+              <div className="flex items-center gap-1.5 font-medium text-slate-700">
+                <Clock className="w-4 h-4 text-emerald-600" />
+                <span>Pelayanan: 08.00 – 15.30 WITA</span>
+              </div>
+              <span className="text-slate-300">•</span>
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span>Kecamatan Benteng, Kepulauan Selayar</span>
               </div>
             </div>
-          )}
+          </div>
+
+          {/* Right Column: High Quality Photographic Card */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-md bg-white">
+              <div className="relative h-64 sm:h-80 w-full">
+                <Image
+                  src="/landing/images/slider-main/benteng.png"
+                  alt="Kantor Kelurahan Benteng"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="p-4 bg-white border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <h4 className="font-bold text-xs text-slate-900">Kantor Kelurahan Benteng</h4>
+                  <p className="text-[11px] text-slate-500">Jl. Siswomiharjo No. 12, Benteng</p>
+                </div>
+                <Link
+                  href="/pemerintah"
+                  className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1"
+                >
+                  <span>Aparatur</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

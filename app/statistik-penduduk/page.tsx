@@ -100,36 +100,38 @@ export default function StatistikPendudukPage() {
             <div className="p-5 border-b border-slate-100 font-bold text-sm text-slate-800">
               Rincian Satuan Lingkungan RT & RW
             </div>
-            <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[10px]">
-                <tr>
-                  <th className="p-3.5">Wilayah</th>
-                  <th className="p-3.5">Jumlah RT</th>
-                  <th className="p-3.5">Jumlah RW</th>
-                  <th className="p-3.5">Laki-Laki</th>
-                  <th className="p-3.5">Perempuan</th>
-                  <th className="p-3.5">Total Jiwa</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
-                <tr className="hover:bg-slate-50/80">
-                  <td className="p-3.5 font-bold">Lingkungan Benteng I</td>
-                  <td className="p-3.5 font-mono">4 RT</td>
-                  <td className="p-3.5 font-mono">5 RW</td>
-                  <td className="p-3.5 font-mono">480</td>
-                  <td className="p-3.5 font-mono">495</td>
-                  <td className="p-3.5 font-bold text-emerald-800 font-mono">975</td>
-                </tr>
-                <tr className="hover:bg-slate-50/80">
-                  <td className="p-3.5 font-bold">Lingkungan Benteng II</td>
-                  <td className="p-3.5 font-mono">3 RT</td>
-                  <td className="p-3.5 font-mono">5 RW</td>
-                  <td className="p-3.5 font-mono">472</td>
-                  <td className="p-3.5 font-mono">479</td>
-                  <td className="p-3.5 font-bold text-emerald-800 font-mono">951</td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs min-w-[500px]">
+                <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[10px]">
+                  <tr>
+                    <th className="p-3.5">Wilayah</th>
+                    <th className="p-3.5">Jumlah RT</th>
+                    <th className="p-3.5">Jumlah RW</th>
+                    <th className="p-3.5">Laki-Laki</th>
+                    <th className="p-3.5">Perempuan</th>
+                    <th className="p-3.5">Total Jiwa</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
+                  <tr className="hover:bg-slate-50/80">
+                    <td className="p-3.5 font-bold">Lingkungan Benteng I</td>
+                    <td className="p-3.5 font-mono">4 RT</td>
+                    <td className="p-3.5 font-mono">5 RW</td>
+                    <td className="p-3.5 font-mono">480</td>
+                    <td className="p-3.5 font-mono">495</td>
+                    <td className="p-3.5 font-bold text-emerald-800 font-mono">975</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50/80">
+                    <td className="p-3.5 font-bold">Lingkungan Benteng II</td>
+                    <td className="p-3.5 font-mono">3 RT</td>
+                    <td className="p-3.5 font-mono">5 RW</td>
+                    <td className="p-3.5 font-mono">472</td>
+                    <td className="p-3.5 font-mono">479</td>
+                    <td className="p-3.5 font-bold text-emerald-800 font-mono">951</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </main>

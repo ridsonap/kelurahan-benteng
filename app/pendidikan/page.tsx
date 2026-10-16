@@ -66,26 +66,28 @@ export default function PendidikanPage() {
 
           {/* Table */}
           <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden">
-            <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[10px]">
-                <tr>
-                  <th className="p-3.5">No</th>
-                  <th className="p-3.5">Jenjang Pendidikan</th>
-                  <th className="p-3.5">Jumlah Penduduk</th>
-                  <th className="p-3.5">Persentase</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
-                {educationData.map((d, i) => (
-                  <tr key={i} className="hover:bg-slate-50/80">
-                    <td className="p-3.5 font-bold text-slate-400">{i + 1}</td>
-                    <td className="p-3.5 font-bold text-slate-900">{d.level}</td>
-                    <td className="p-3.5 font-mono">{d.count} Jiwa</td>
-                    <td className="p-3.5 font-bold text-emerald-800 font-mono">{d.pct}%</td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs min-w-[400px]">
+                <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[10px]">
+                  <tr>
+                    <th className="p-3.5">No</th>
+                    <th className="p-3.5">Jenjang Pendidikan</th>
+                    <th className="p-3.5">Jumlah Penduduk</th>
+                    <th className="p-3.5">Persentase</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
+                  {educationData.map((d, i) => (
+                    <tr key={i} className="hover:bg-slate-50/80">
+                      <td className="p-3.5 font-bold text-slate-400">{i + 1}</td>
+                      <td className="p-3.5 font-bold text-slate-900">{d.level}</td>
+                      <td className="p-3.5 font-mono">{d.count} Jiwa</td>
+                      <td className="p-3.5 font-bold text-emerald-800 font-mono">{d.pct}%</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </main>

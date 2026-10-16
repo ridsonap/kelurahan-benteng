@@ -1,85 +1,97 @@
-"use client";
-
-import { useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, BarChart3 } from "lucide-react";
 
 export default function StatistikCarousel() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   const stats = [
-    { label: "Dusun / Lingkungan", value: "2", icon: "/landing/images/icon-image/dusun.png", desc: "Satuan Wilayah" },
-    { label: "Rukun Tetangga (RT)", value: "7", icon: "/landing/images/icon-image/rt.png", desc: "Komunitas Warga" },
-    { label: "Rukun Warga (RW)", value: "10", icon: "/landing/images/icon-image/rw.png", desc: "Satuan RW" },
-    { label: "Kepala Keluarga", value: "912", icon: "/landing/images/icon-image/kepalaKeluarga.png", desc: "Kartu Keluarga" },
-    { label: "Laki-laki", value: "952", icon: "/landing/images/icon-image/male.png", desc: "49.4% Jiwa" },
-    { label: "Perempuan", value: "974", icon: "/landing/images/icon-image/women.png", desc: "50.6% Jiwa" },
-    { label: "Disabilitas", value: "1", icon: "/landing/images/icon-image/disabi.png", desc: "Prioritas Bantuan" },
-    { label: "Jumlah Penduduk", value: "1,926", icon: "/landing/images/icon-image/family.png", desc: "Total Jiwa Terdata" },
+    {
+      label: "Total Penduduk",
+      value: "1.926",
+      unit: "Jiwa",
+      sub: "Binaan Desa Cantik 2026",
+      icon: "/landing/images/icon-image/family.png",
+      href: "/statistik-penduduk",
+    },
+    {
+      label: "Kepala Keluarga",
+      value: "912",
+      unit: "KK",
+      sub: "Rata-rata 2.1 jiwa / KK",
+      icon: "/landing/images/icon-image/kepalaKeluarga.png",
+      href: "/statistik-penduduk",
+    },
+    {
+      label: "Laki-laki & Perempuan",
+      value: "952 / 974",
+      unit: "Jiwa",
+      sub: "49.4% Laki-laki • 50.6% Perempuan",
+      icon: "/landing/images/icon-image/male.png",
+      href: "/statistik-penduduk",
+    },
+    {
+      label: "Satuan Wilayah",
+      value: "10 RW / 7 RT",
+      unit: "Wilayah",
+      sub: "2 Dusun Lingkungan (587.4 Ha)",
+      icon: "/landing/images/icon-image/rw.png",
+      href: "/sejarah",
+    },
   ];
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const offset = direction === "left" ? -280 : 280;
-      scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
-    }
-  };
-
   return (
-    <section className="py-14 bg-slate-50 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight">
-              Statistik Kependudukan Kelurahan Benteng Tahun 2026
+    <section className="py-14 bg-white border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-1">
+            <span className="text-xs font-semibold text-emerald-800 tracking-wider uppercase">
+              Data Terpadu Kependudukan
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Statistik Penduduk Kelurahan Benteng Tahun 2026
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Data terverifikasi hasil kolaborasi Desa Cantik bersama BPS Sulsel
+            <p className="text-xs sm:text-sm text-slate-500">
+              Hasil pemutakhiran data statistik sektoral bersama Badan Pusat Statistik (BPS) Provinsi Sulawesi Selatan
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => scroll("left")}
-              aria-label="Geser kiri"
-              className="w-9 h-9 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-600 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              aria-label="Geser kanan"
-              className="w-9 h-9 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-600 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+
+          <Link
+            href="/statistik-penduduk"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-slate-300 text-slate-700 hover:text-emerald-800 hover:border-emerald-600 text-xs font-bold transition-colors self-start sm:self-auto shrink-0"
+          >
+            <BarChart3 className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Lihat Seluruh Rincian</span>
+          </Link>
         </div>
 
-        {/* Horizontal Scroll Cards */}
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
+        {/* 4 Crisp Key Metric Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {stats.map((s, idx) => (
-            <div
+            <Link
               key={idx}
-              className="shrink-0 w-48 sm:w-52 bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 snap-start flex flex-col items-center text-center group"
+              href={s.href}
+              className="bg-slate-50/80 rounded-xl p-5 border border-slate-200/80 hover:bg-white hover:border-emerald-600/50 hover:shadow-md transition-all group flex flex-col justify-between"
             >
-              <div className="w-14 h-14 relative mb-3 bg-emerald-50 rounded-2xl p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Image
-                  src={s.icon}
-                  alt={s.label}
-                  fill
-                  className="object-contain p-2"
-                />
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-bold text-slate-600 group-hover:text-emerald-800 transition-colors">
+                  {s.label}
+                </span>
+                <div className="w-9 h-9 relative bg-white rounded-lg p-1.5 border border-slate-200 shadow-2xs">
+                  <Image src={s.icon} alt={s.label} fill className="object-contain p-1" />
+                </div>
               </div>
-              <span className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight text-emerald-800">
-                {s.value}
-              </span>
-              <p className="text-xs font-bold text-slate-700 mt-1">{s.label}</p>
-              <span className="text-[11px] text-slate-400 mt-0.5">{s.desc}</span>
-            </div>
+
+              <div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                    {s.value}
+                  </span>
+                  <span className="text-xs font-medium text-slate-400">{s.unit}</span>
+                </div>
+                <p className="text-[11px] text-slate-500 mt-1 leading-snug">
+                  {s.sub}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

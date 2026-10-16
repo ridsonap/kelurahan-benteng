@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
+import QuickActionBar from "@/components/QuickActionBar";
 import StatistikCarousel from "@/components/StatistikCarousel";
 import StatistikChart from "@/components/StatistikChart";
 import TentangSection from "@/components/TentangSection";
@@ -12,10 +13,11 @@ import GaleriSection from "@/components/GaleriSection";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-800">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800">
       <Navbar />
       <main className="flex-1">
         <HeroSection />
+        <QuickActionBar />
         <StatistikCarousel />
         <StatistikChart />
         <TentangSection />
