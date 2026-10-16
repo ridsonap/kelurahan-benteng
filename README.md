@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Website Resmi Kelurahan Benteng (Desa Cantik 2026)
 
-## Getting Started
+Implementasi portal web publik dan sistem administrasi kelurahan berbasis Next.js 15 (App Router, TypeScript, Tailwind CSS) dengan kesiapan deployment 100% serverless di Vercel.
 
-First, run the development server:
+Referensi: `https://desacantik.benteng.stat7300.net/` (Bina BPS Provinsi Sulawesi Selatan).
+
+---
+
+## Fitur Utama
+
+1. **Halaman Publik Warga**
+   - **Beranda (`/`)**: Hero banner, live search jump, carousel statistik kependudukan, chart interaktif, ringkasan APBD 2026, berita terkini, agenda, katalog UMKM, dan galeri kegiatan.
+   - **Profil Kelurahan**: Galeri (`/galeri`), Sejarah (`/sejarah`), Struktur Pemerintahan & Tupoksi (`/pemerintah`), APBD Transparansi Keuangan (`/apbd`).
+   - **Berita & Agenda**: Indeks berita (`/berita`), detail berita (`/berita/[id]`), agenda kelurahan (`/agenda`), detail agenda (`/agenda/[id]`).
+   - **Data Statistik**: Jumlah Penduduk (`/statistik-penduduk`), Pendidikan (`/pendidikan`), Pekerjaan (`/pekerjaan`), Agama (`/agama`).
+   - **Layanan Mandiri Online**:
+     - Permohonan Surat Online (`/pengantar`) — SKU, SKTM, Kematian, Izin Keramaian.
+     - Lacak Status Surat (`/status`) menggunakan NIK.
+     - Format Cetak Surat Resmi (`/print-surat/[id]`) dengan Kop Daerah, QR Code verifikasi, dan format siap cetak/PDF (A4).
+     - Pengaduan Warga (`/pengaduan`) & Cek Status Pengaduan (`/status-pengaduan`).
+     - Buku Tamu Digital (`/bukutamu`) dengan tanda tangan digital HTML5 Canvas.
+   - **PPID & UMKM**: Dokumen Informasi Publik (`/ppid`), Status Permohonan Informasi (`/ppid/status-permohonan`), Katalog Belanja UMKM (`/belanja`) & Detail (`/belanja/[id]`) dengan redirect WhatsApp.
+
+2. **Dashboard Back-Office Admin (`/dashboard`)**
+   - Autentikasi Admin (`/auth`) via cookie session aman.
+   - Manajemen Master Penduduk (`/dashboard/dataPenduduk`) — CRUD data warga, pencarian NIK & alamat.
+   - Verifikasi Persuratan Online: SKU (`/dashboard/admin/sku`), SKTM (`/dashboard/admin/sktm`), Surat Kematian (`/dashboard/admin/kematian`), Surat Izin (`/dashboard/admin/izin`).
+   - Manajemen Aspirasi & Pengaduan (`/dashboard/pengaduan`) — tanggapan dan update status laporan warga.
+   - Manajemen Konten: Galeri (`/dashboard/galeriDesa`), Aparatur (`/dashboard/pemerintah-desa`), APBD (`/dashboard/apbd`), Agenda (`/dashboard/AgendaDesa`), Berita (`/dashboard/berita`), Kategori (`/dashboard/kategori`), Dokumen PPID (`/dashboard/ppid`), Permohonan PPID (`/dashboard/admin/permohonan`), UMKM (`/dashboard/admin/belanja`), Buku Tamu Rekap (`/dashboard/admin/buku-tamu`), Data Akun (`/dashboard/akun`).
+
+---
+
+## Kredensial Akses
+
+- **URL Login Admin**: `/auth`
+- **Username**: `bentengbenteng`
+- **Password**: `benteng123456`
+
+---
+
+## Panduan Menjalankan Lokal
 
 ```bash
+# Instalasi dependensi
+npm install
+
+# Jalankan self-check logika data
+npm test
+
+# Jalankan server pengembangan
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Jalankan build produksi
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy ke Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Aplikasi dirancang 100% kompatibel dengan arsitektur serverless Edge/Node.js di Vercel:
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Import repositori GitHub `kelurahan-benteng` ke dashboard Vercel.
+2. Framework Preset: **Next.js**.
+3. Klik **Deploy**. Tidak membutuhkan environment variable wajib untuk pengujian awal.
+4. *(Opsional)* Untuk persistensi database eksternal skala produksi, sambungkan ke Neon PostgreSQL / Supabase melalui `DATABASE_URL`.
